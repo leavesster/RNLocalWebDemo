@@ -9,8 +9,12 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  WebView,
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
+const {height, width} = Dimensions.get('window');
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -21,17 +25,31 @@ const instructions = Platform.select({
 
 export default class App extends Component<{}> {
   render() {
+    let htmlPath = Platform.OS == 'ios' ? 'index.html' : 'file:///android_asset/index.html';
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <WebView
+            ref={(ref) => {
+              this.webview = ref
+            }}
+            automaticallyAdjustContentInsets={false}
+            source={{uri: htmlPath}}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            decelerationRate="normal"
+            startInLoadingState={true}
+            style={{height: height, width: width}}
+            scrollEnabled={false}
+        />
+        {/* <TouchableOpacity style={{
+          position: "absolute",
+          left: 10,
+          top: 10,
+          width: 100,
+          height: 100,
+        }} onPress={() => {this.webview.reload()}}                  
+        >
+        </TouchableOpacity>                           */}
       </View>
     );
   }
