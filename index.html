@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>Local web</title>
+    <script type="text/javascript">
+      window.onload = function () {
+        document.getElementById("url").onclick = function () {
+          alert(window.location.href);
+        }
+      }
+    </script>
+</head>
+<body>
+<div id="app-root"></div>
+<h1>This is a local source html</h1>
+<p id="url">click me to show url</p>
+</body>
+</html>
